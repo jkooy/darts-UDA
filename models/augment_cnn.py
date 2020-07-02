@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 from models.augment_cells import AugmentCell
 from models import ops
+import torchvision.models as models
 
 
 class AuxiliaryHead(nn.Module):
@@ -24,7 +25,9 @@ class AuxiliaryHead(nn.Module):
         self.linear = nn.Linear(768, n_classes)
 
     def forward(self, x):
+        print('...............................out.........................',x.size())
         out = self.net(x)
+        print('...............................out.........................',output.size())
         out = out.view(out.size(0), -1) # flatten
         logits = self.linear(out)
         return logits
@@ -81,11 +84,16 @@ class AugmentCNN(nn.Module):
         self.linear = nn.Linear(C_p, n_classes)
 
     def forward(self, x):
+        model = models.resnet50(pretrained=True).cuda()
+        resnet_backbone = nn.Sequential(*list(model.children())[:-4])
+        x = resnet_backbone(x)
         s0 = s1 = self.stem(x)
 
         aux_logits = None
         for i, cell in enumerate(self.cells):
             s0, s1 = s1, cell(s0, s1)
+#             print('........................s1..........................', s1.size(), self.aux_pos, cell)
+            
             if i == self.aux_pos and self.training:
                 aux_logits = self.aux_head(s1)
 

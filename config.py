@@ -82,7 +82,7 @@ class AugmentConfig(BaseConfig):
         parser = get_parser("Augment config")
         parser.add_argument('--name', required=True)
         parser.add_argument('--dataset', required=True, help='CIFAR10 / MNIST / FashionMNIST')
-        parser.add_argument('--batch_size', type=int, default=1, help='batch size')
+        parser.add_argument('--batch_size', type=int, default=32, help='batch size')
         ################# orginal 96
         parser.add_argument('--lr', type=float, default=0.025, help='lr for weights')
         parser.add_argument('--momentum', type=float, default=0.9, help='momentum')
@@ -92,12 +92,18 @@ class AugmentConfig(BaseConfig):
         parser.add_argument('--print_freq', type=int, default=200, help='print frequency')
         parser.add_argument('--gpus', default='0', help='gpu device ids separated by comma. '
                             '`all` indicates use all gpus.')
-        parser.add_argument('--epochs', type=int, default=600, help='# of training epochs')
+        parser.add_argument('--epochs', type=int, default=1, help='# of training epochs')
+#         parser.add_argument('--epochs', type=int, default=600, help='# of training epochs')
         parser.add_argument('--init_channels', type=int, default=36)
         parser.add_argument('--layers', type=int, default=20, help='# of layers')
         parser.add_argument('--seed', type=int, default=2, help='random seed')
         parser.add_argument('--workers', type=int, default=4, help='# of workers')
-        parser.add_argument('--aux_weight', type=float, default=0.4, help='auxiliary loss weight')
+        
+        
+        parser.add_argument('--aux_weight', type=float, default=0, help='auxiliary loss weight')
+#       parser.add_argument('--aux_weight', type=float, default=0.4, help='auxiliary loss weight')
+        """ Auxiliary head in 2/3 place of network to let the gradient flow well """
+
         parser.add_argument('--cutout_length', type=int, default=16, help='cutout length')
         parser.add_argument('--drop_path_prob', type=float, default=0.2, help='drop path prob')
 
