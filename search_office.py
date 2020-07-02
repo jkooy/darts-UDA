@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from tensorboardX import SummaryWriter
-from config import SearchConfig
+from search_config import SearchConfig
 import utils
 from models.search_cnn import SearchCNNController
 from architect import Architect

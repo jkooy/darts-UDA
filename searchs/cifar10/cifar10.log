@@ -1848,3 +1848,27 @@ tensor([[0.1250, 0.1249, 0.1251, 0.1251, 0.1251, 0.1249, 0.1250, 0.1250],
 07/02 11:20:55 AM | genotype = Genotype(normal=[[('avg_pool_3x3', 0), ('dil_conv_3x3', 1)], [('avg_pool_3x3', 0), ('skip_connect', 2)], [('avg_pool_3x3', 0), ('skip_connect', 2)], [('skip_connect', 0), ('skip_connect', 4)]], normal_concat=range(2, 6), reduce=[[('avg_pool_3x3', 0), ('avg_pool_3x3', 1)], [('avg_pool_3x3', 1), ('avg_pool_3x3', 0)], [('avg_pool_3x3', 0), ('avg_pool_3x3', 1)], [('avg_pool_3x3', 0), ('skip_connect', 4)]], reduce_concat=range(2, 6))
 07/02 11:20:55 AM | Final best Prec@1 = 59.4040%
 07/02 11:20:55 AM | Best Genotype = Genotype(normal=[[('avg_pool_3x3', 0), ('dil_conv_3x3', 1)], [('avg_pool_3x3', 0), ('skip_connect', 2)], [('avg_pool_3x3', 0), ('skip_connect', 2)], [('skip_connect', 0), ('skip_connect', 4)]], normal_concat=range(2, 6), reduce=[[('avg_pool_3x3', 0), ('avg_pool_3x3', 1)], [('avg_pool_3x3', 1), ('avg_pool_3x3', 0)], [('avg_pool_3x3', 0), ('avg_pool_3x3', 1)], [('avg_pool_3x3', 0), ('skip_connect', 4)]], reduce_concat=range(2, 6))
+07/02 03:06:48 PM | 
+07/02 03:06:48 PM | Parameters:
+07/02 03:06:48 PM | ALPHA_LR=0.0003
+07/02 03:06:48 PM | ALPHA_WEIGHT_DECAY=0.001
+07/02 03:06:48 PM | BATCH_SIZE=32
+07/02 03:06:48 PM | DATA_PATH=./data/
+07/02 03:06:48 PM | DATASET=cifar10
+07/02 03:06:48 PM | EPOCHS=1
+07/02 03:06:48 PM | GPUS=[0]
+07/02 03:06:48 PM | INIT_CHANNELS=16
+07/02 03:06:48 PM | LAYERS=8
+07/02 03:06:48 PM | NAME=cifar10
+07/02 03:06:48 PM | PATH=searchs/cifar10
+07/02 03:06:48 PM | PLOT_PATH=searchs/cifar10/plots
+07/02 03:06:48 PM | PRINT_FREQ=50
+07/02 03:06:48 PM | SEED=2
+07/02 03:06:48 PM | W_GRAD_CLIP=5.0
+07/02 03:06:48 PM | W_LR=0.025
+07/02 03:06:48 PM | W_LR_MIN=0.001
+07/02 03:06:48 PM | W_MOMENTUM=0.9
+07/02 03:06:48 PM | W_WEIGHT_DECAY=0.0003
+07/02 03:06:48 PM | WORKERS=4
+07/02 03:06:48 PM | 
+07/02 03:06:48 PM | Logger is set - training start
