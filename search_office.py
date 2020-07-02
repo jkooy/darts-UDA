@@ -10,6 +10,7 @@ from models.search_cnn import SearchCNNController
 from architect import Architect
 from visualize import plot
 
+from prepare_data import *
 
 config = SearchConfig()
 
@@ -37,9 +38,11 @@ def main():
     torch.backends.cudnn.benchmark = True
 
     # get data with meta info
-    input_size, input_channels, n_classes, train_data = utils.get_data(
-        config.dataset, config.data_path, cutout_length=0, validation=False)
-
+#     input_size, input_channels, n_classes, train_data = utils.get_data(
+#         config.dataset, config.data_path, cutout_length=0, validation=False)
+    dataloaders = prepare_data_CAN()
+    
+    print(train_data)
     net_crit = nn.CrossEntropyLoss().to(device)
     
     #resnet backbone
