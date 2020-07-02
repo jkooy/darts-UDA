@@ -571,3 +571,44 @@
 07/01 08:45:15 PM | Model size = 1.967 MB
 07/01 08:45:15 PM | Epoch 0 LR 0.024999828653092835
 07/01 08:45:18 PM | Train: [  1/600] Step 000/1562 Loss 2.930 Prec@(1,5) (3.1%, 50.0%)
+07/01 11:18:55 PM | 
+07/01 11:18:55 PM | Parameters:
+07/01 11:18:55 PM | AUX_WEIGHT=0
+07/01 11:18:55 PM | BATCH_SIZE=32
+07/01 11:18:55 PM | CUTOUT_LENGTH=16
+07/01 11:18:55 PM | DATA_PATH=./data/
+07/01 11:18:55 PM | DATASET=cifar10
+07/01 11:18:55 PM | DROP_PATH_PROB=0.2
+07/01 11:18:55 PM | EPOCHS=1
+07/01 11:18:55 PM | GENOTYPE=Genotype(normal=[[('avg_pool_3x3', 0), ('dil_conv_3x3', 1)], [('avg_pool_3x3', 0), ('avg_pool_3x3', 2)], [('avg_pool_3x3', 0), ('skip_connect', 2)], [('avg_pool_3x3', 0), ('skip_connect', 2)]], normal_concat=range(2, 6), reduce=[[('avg_pool_3x3', 0), ('avg_pool_3x3', 1)], [('avg_pool_3x3', 1), ('avg_pool_3x3', 0)], [('avg_pool_3x3', 1), ('skip_connect', 3)], [('skip_connect', 2), ('avg_pool_3x3', 1)]], reduce_concat=range(2, 6))
+07/01 11:18:55 PM | GPUS=[0]
+07/01 11:18:55 PM | GRAD_CLIP=5.0
+07/01 11:18:55 PM | INIT_CHANNELS=36
+07/01 11:18:55 PM | LAYERS=20
+07/01 11:18:55 PM | LR=0.025
+07/01 11:18:55 PM | MOMENTUM=0.9
+07/01 11:18:55 PM | NAME=cifar10
+07/01 11:18:55 PM | PATH=augments/cifar10
+07/01 11:18:55 PM | PRINT_FREQ=200
+07/01 11:18:55 PM | SEED=2
+07/01 11:18:55 PM | WEIGHT_DECAY=0.0003
+07/01 11:18:55 PM | WORKERS=4
+07/01 11:18:55 PM | 
+07/01 11:18:55 PM | Logger is set - training start
+07/01 11:19:00 PM | Model size = 1.967 MB
+07/01 11:19:00 PM | Epoch 0 LR 0.0
+07/01 11:19:03 PM | Train: [  1/1] Step 000/1562 Loss 2.930 Prec@(1,5) (3.1%, 50.0%)
+07/01 11:22:23 PM | Train: [  1/1] Step 200/1562 Loss 2.790 Prec@(1,5) (10.3%, 50.3%)
+07/01 11:25:41 PM | Train: [  1/1] Step 400/1562 Loss 2.792 Prec@(1,5) (10.0%, 50.3%)
+07/01 11:29:01 PM | Train: [  1/1] Step 600/1562 Loss 2.795 Prec@(1,5) (10.1%, 50.2%)
+07/01 11:32:20 PM | Train: [  1/1] Step 800/1562 Loss 2.793 Prec@(1,5) (10.1%, 50.3%)
+07/01 11:35:41 PM | Train: [  1/1] Step 1000/1562 Loss 2.796 Prec@(1,5) (10.0%, 50.2%)
+07/01 11:39:03 PM | Train: [  1/1] Step 1200/1562 Loss 2.793 Prec@(1,5) (10.1%, 50.2%)
+07/01 11:42:23 PM | Train: [  1/1] Step 1400/1562 Loss 2.791 Prec@(1,5) (10.1%, 50.3%)
+07/01 11:45:04 PM | Train: [  1/1] Step 1562/1562 Loss 2.792 Prec@(1,5) (10.1%, 50.2%)
+07/01 11:45:04 PM | Train: [  1/1] Final Prec@1 10.1320%
+07/01 11:45:06 PM | Valid: [  1/1] Step 000/312 Loss 3.663 Prec@(1,5) (3.1%, 50.0%)
+07/01 11:48:10 PM | Valid: [  1/1] Step 200/312 Loss 2.964 Prec@(1,5) (9.2%, 48.8%)
+07/01 11:49:52 PM | Valid: [  1/1] Step 312/312 Loss 2.961 Prec@(1,5) (9.4%, 48.9%)
+07/01 11:49:52 PM | Valid: [  1/1] Final Prec@1 9.4400%
+07/01 11:49:53 PM | Final best Prec@1 = 9.4400%

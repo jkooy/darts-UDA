@@ -46,6 +46,8 @@ def main():
     input_channels = 512
     model = AugmentCNN(input_size, input_channels, config.init_channels, n_classes, config.layers,
                        use_aux, config.genotype)
+    
+    torch.save(model, 'save_model')
     model = nn.DataParallel(model, device_ids=config.gpus).to(device)
 
     # model size
