@@ -41,6 +41,9 @@ def main():
         config.dataset, config.data_path, cutout_length=0, validation=False)
 
     net_crit = nn.CrossEntropyLoss().to(device)
+    
+    #resnet backbone
+    input_channels = 512
     model = SearchCNNController(input_channels, config.init_channels, n_classes, config.layers,
                                 net_crit, device_ids=config.gpus)
     model = model.to(device)
@@ -95,8 +98,8 @@ def main():
         # genotype as a image
         plot_path = os.path.join(config.plot_path, "EP{:02d}".format(epoch+1))
         caption = "Epoch {}".format(epoch+1)
-        plot(genotype.normal, plot_path + "-normal", caption)
-        plot(genotype.reduce, plot_path + "-reduce", caption)
+#         plot(genotype.normal, plot_path + "-normal", caption)
+#         plot(genotype.reduce, plot_path + "-reduce", caption)
 
         # save
         if best_top1 < top1:

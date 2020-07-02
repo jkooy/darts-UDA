@@ -6,6 +6,7 @@ from models.search_cells import SearchCell
 import genotypes as gt
 from torch.nn.parallel._functions import Broadcast
 import logging
+import torchvision.models as models
 
 
 def broadcast_list(l, device_ids):
@@ -64,8 +65,11 @@ class SearchCNN(nn.Module):
         self.linear = nn.Linear(C_p, n_classes)
 
     def forward(self, x, weights_normal, weights_reduce):
+        model = models.resnet50(pretrained=True).cuda()
+        resnet_backbone = nn.Sequential(*list(model.children())[:-4])
+        x = resnet_backbone(x)
         s0 = s1 = self.stem(x)
-
+        
         for cell in self.cells:
             weights = weights_reduce if cell.reduction else weights_normal
             s0, s1 = s1, cell(s0, s1, weights)
