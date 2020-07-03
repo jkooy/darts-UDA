@@ -38,11 +38,12 @@ def main():
     torch.backends.cudnn.benchmark = True
 
     # get data with meta info
-#     input_size, input_channels, n_classes, train_data = utils.get_data(
-#         config.dataset, config.data_path, cutout_length=0, validation=False)
-    dataloaders = prepare_data_CAN()
-    
-    print(train_data)
+    input_size, input_channels, n_classes, train_data = utils.get_data(
+        config.dataset, config.data_path, cutout_length=0, validation=False)
+#     print('........................train data is...............................', train_data)
+    dataloaders, n_classes = prepare_data_CAN()
+    train_data = dataloaders
+    print('........................train data is...............................', train_data)
     net_crit = nn.CrossEntropyLoss().to(device)
     
     #resnet backbone
@@ -74,6 +75,7 @@ def main():
                                                sampler=valid_sampler,
                                                num_workers=config.workers,
                                                pin_memory=True)
+    print('........................train loader is...............................', train_loader)
     lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         w_optim, config.epochs, eta_min=config.w_lr_min)
     architect = Architect(model, config.w_momentum, config.w_weight_decay)

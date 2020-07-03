@@ -8,16 +8,19 @@ def prepare_data_CAN():
     dataloaders = {}
     train_transform = data_utils.get_transform(True)
     test_transform = data_utils.get_transform(False)
+    
+    DATAROOT = './data'
+    source = 'Original_images/amazon/images/'
+    target = 'Original_images/dslr/images'
+    dataroot_S = os.path.join(DATAROOT, source)
+    dataroot_T = os.path.join(DATAROOT, target)
 
-    source = cfg.DATASET.SOURCE_NAME
-    target = cfg.DATASET.TARGET_NAME
-    dataroot_S = os.path.join(cfg.DATASET.DATAROOT, source)
-    dataroot_T = os.path.join(cfg.DATASET.DATAROOT, target)
-
-    with open(os.path.join(cfg.DATASET.DATAROOT, 'category.txt'), 'r') as f:
+#     with open(os.path.join(cfg.DATASET.DATAROOT, 'category.txt'), 'r') as f:
+    with open(os.path.join(DATAROOT, 'category.txt'), 'r') as f:
         classes = f.readlines()
         classes = [c.strip() for c in classes]
-    assert(len(classes) == cfg.DATASET.NUM_CLASSES)
+    assert(len(classes) == 31)
+#     assert(len(classes) == cfg.DATASET.NUM_CLASSES)
 
     # for clustering
     batch_size = cfg.CLUSTERING.SOURCE_BATCH_SIZE
@@ -66,14 +69,14 @@ def prepare_data_CAN():
     batch_size = cfg.TEST.BATCH_SIZE
     dataset_type = cfg.TEST.DATASET_TYPE
     test_domain = cfg.TEST.DOMAIN if cfg.TEST.DOMAIN != "" else target
-    dataroot_test = os.path.join(cfg.DATASET.DATAROOT, test_domain)
+    dataroot_test = os.path.join(DATAROOT, test_domain)
     dataloaders['test'] = CustomDatasetDataLoader(
                     dataset_root=dataroot_test, dataset_type=dataset_type,
                     batch_size=batch_size, transform=test_transform,
                     train=False, num_workers=cfg.NUM_WORKERS,
                     classnames=classes)
 
-    return dataloaders
+    return dataloaders, len(classes)
 
 def prepare_data_MMD():
     dataloaders = {}
