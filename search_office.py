@@ -41,9 +41,15 @@ def main():
     input_size, input_channels, n_classes, train_data = utils.get_data(
         config.dataset, config.data_path, cutout_length=0, validation=False)
 #     print('........................train data is...............................', train_data)
-    dataloaders, n_classes = prepare_data_CAN()
-    train_data = dataloaders
-    print('........................train data is...............................', train_data)
+#     dataloaders, n_classes = prepare_data_CAN()
+    prepare_data, n_classes = prepare_data_CAN()
+    train_loader = prepare_data['clustering_Original_images/amazon/images/']   
+#     valid_loader = prepare_data['clustering_Original_images/dslr/images'] 
+    valid_loader = prepare_data['clustering_Original_images/amazon/images/']
+#     train_data = dataloaders
+    
+    print('........................train loader is...............................', train_loader)
+        
     net_crit = nn.CrossEntropyLoss().to(device)
     
     #resnet backbone
@@ -65,6 +71,8 @@ def main():
     indices = list(range(n_train))
     train_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[:split])
     valid_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[split:])
+    
+    '''
     train_loader = torch.utils.data.DataLoader(train_data,
                                                batch_size=config.batch_size,
                                                sampler=train_sampler,
@@ -75,7 +83,8 @@ def main():
                                                sampler=valid_sampler,
                                                num_workers=config.workers,
                                                pin_memory=True)
-    print('........................train loader is...............................', train_loader)
+    '''
+
     lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         w_optim, config.epochs, eta_min=config.w_lr_min)
     architect = Architect(model, config.w_momentum, config.w_weight_decay)
@@ -130,7 +139,14 @@ def train(train_loader, valid_loader, model, architect, w_optim, alpha_optim, lr
 
     model.train()
 
-    for step, ((trn_X, trn_y), (val_X, val_y)) in enumerate(zip(train_loader, valid_loader)):
+#     for step, ((trn_X, trn_y), (val_X, val_y)) in enumerate(zip(train_loader, valid_loader)):
+    for step, data in enumerate(zip(train_loader, valid_loader)):
+        print('........................train data is...............................', data)
+        trn_X = data[0]['Img']
+        trn_y = data[0]['Label']
+        val_X = data[1]['Img']
+        val_y = data[1]['Label']
+        
         trn_X, trn_y = trn_X.to(device, non_blocking=True), trn_y.to(device, non_blocking=True)
         val_X, val_y = val_X.to(device, non_blocking=True), val_y.to(device, non_blocking=True)
         N = trn_X.size(0)
