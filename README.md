@@ -67,7 +67,7 @@ python augment.py --name cifar10-mg --dataset cifar10 --gpus 0,1,2,3 \
 
 Simply, `--gpus all` makes to use all gpus.
 ```
-python search_office.py --name cifar10-mg --dataset cifar10 --gpus all \
+python search_office.py --name office31-mg --dataset cifar10 --gpus all \
     --batch_size 256 --workers 16 --print_freq 10 \
     --w_lr 0.1 --w_lr_min 0.004 --alpha_lr 0.0012
 ```
@@ -169,4 +169,3 @@ https://github.com/quark0/darts (official implementation)
 - No RNN
 
 and so on.
-# darts-reproduce
