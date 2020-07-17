@@ -42,7 +42,7 @@ class SearchConfig(BaseConfig):
     def build_parser(self):
         parser = get_parser("Search config")
         parser.add_argument('--name', required=True)
-        parser.add_argument('--dataset', required=True, help='CIFAR10 / MNIST / FashionMNIST')
+        parser.add_argument('--dataset', required=True, help='Office31')
         parser.add_argument('--batch_size', type=int, default=32, help='batch size')
         ################## original 64 ##################
         parser.add_argument('--w_lr', type=float, default=0.025, help='lr for weights')
@@ -81,7 +81,7 @@ class AugmentConfig(BaseConfig):
     def build_parser(self):
         parser = get_parser("Augment config")
         parser.add_argument('--name', required=True)
-        parser.add_argument('--dataset', required=True, help='CIFAR10 / MNIST / FashionMNIST')
+        parser.add_argument('--dataset', required=True, help='Office31')
         parser.add_argument('--batch_size', type=int, default=32, help='batch size')
         ################# orginal 96
         parser.add_argument('--lr', type=float, default=0.025, help='lr for weights')

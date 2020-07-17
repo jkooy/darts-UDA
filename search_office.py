@@ -141,7 +141,7 @@ def train(train_loader, valid_loader, model, architect, w_optim, alpha_optim, lr
 
 #     for step, ((trn_X, trn_y), (val_X, val_y)) in enumerate(zip(train_loader, valid_loader)):
     for step, data in enumerate(zip(train_loader, valid_loader)):
-        print('........................train data is...............................', data)
+#         print('........................train data is...............................', data)
         trn_X = data[0]['Img']
         trn_y = data[0]['Label']
         val_X = data[1]['Img']
@@ -193,8 +193,10 @@ def validate(valid_loader, model, epoch, cur_step):
     model.eval()
 
     with torch.no_grad():
-        for step, (X, y) in enumerate(valid_loader):
-            X, y = X.to(device, non_blocking=True), y.to(device, non_blocking=True)
+#         for step, (X, y) in enumerate(valid_loader):
+#             X, y = X.to(device, non_blocking=True), y.to(device, non_blocking=True)
+        for step, data in enumerate(valid_loader):
+            X, y = data['Img'].to(device, non_blocking=True), data['Label'].to(device, non_blocking=True)
             N = X.size(0)
 
             logits = model(X)
