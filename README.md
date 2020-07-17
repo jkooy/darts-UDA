@@ -1,6 +1,4 @@
-# DARTS: Differentiable Architecture Search
-
-Liu, Hanxiao, Karen Simonyan, and Yiming Yang. "Darts: Differentiable architecture search." arXiv preprint arXiv:1806.09055 (2018). [[arxiv](https://arxiv.org/abs/1806.09055)]
+# DARTS-UDA
 
 ## Requirements
 
@@ -18,7 +16,7 @@ Adjust the batch size if out of memory (OOM) occurs. It dependes on your gpu mem
 - Search
 
 ```shell
-python search.py --name cifar10 --dataset cifar10
+python search_office.py --name cifar10 --dataset cifar10
 ```
 
 - Augment
@@ -49,7 +47,7 @@ This project suppports multi-gpu. The larger batch size and learning rate are re
 - Search
 
 ```
-python search.py --name cifar10-mg --dataset cifar10 --gpus 0,1,2,3 \
+python search_office.py --name cifar10-mg --dataset cifar10 --gpus 0,1,2,3 \
     --batch_size 256 --workers 16 --print_freq 10 \
     --w_lr 0.1 --w_lr_min 0.004 --alpha_lr 0.0012
 ```
@@ -68,6 +66,11 @@ python augment.py --name cifar10-mg --dataset cifar10 --gpus 0,1,2,3 \
 ```
 
 Simply, `--gpus all` makes to use all gpus.
+```
+python search_office.py --name office31-mg --dataset cifar10 --gpus all \
+    --batch_size 256 --workers 16 --print_freq 10 \
+    --w_lr 0.1 --w_lr_min 0.004 --alpha_lr 0.0012
+```
 
 ### Cautions
 
@@ -166,4 +169,3 @@ https://github.com/quark0/darts (official implementation)
 - No RNN
 
 and so on.
-# darts-reproduce
